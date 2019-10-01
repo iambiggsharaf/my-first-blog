@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="out.png">
+    <style>body{
+    background-color: #3F729B;
+}
+div{
+    width: 40%;
+    height: 20%;
+    color: #3F729B;
+    background-color: white;
+    padding: 10px;
+    font-size: 20px;
+    margin: 0 auto;
+    border-radius: 35px 35px;
+    margin: 10% auto;
+}
+#div2{
+    position: absolute;
+    top: 0px;
+    right: 270px;
+    width: 100px;
+    height: 260px;
+    margin: none;
+}
+#par {
+    text-align: center;
+    padding-top: 25px;
+    padding: 25px 20px;
+}
+#time{
+    color: white;
+    background-color: #3F729B;
+    font-size: 15px;
+    width: 80px;
+    height: 20px;
+}
+textarea{
+    border:3px #777b77 solid;
+    width: 350px ;
+    padding: 15px 0 0 15px;
+    border: 3px #777b77 solid;
+    border-radius: 35px 35px;
+    outline: none;
+    border-radius: 35px 35px;
+}
+.divtime{
+    background: #3f729b;
+    width: 115px;
+    padding: 6px 5px;
+    text-align: center;
+    left: -25px;
+    float: right;
+    border-radius: 15px;
+    position: relative;
+    color: #fff;
+    top: -50px;
+}
+button {
+    float: right;
+    left: 100px;
+    width: 125px;
+    height: 35px;
+    padding: 10px 32px;
+    position: relative;
+    top: -50px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    background: #3f729b !important;
+    color: #fff;
+    font-size: 18px;
+  }
+  span{
+      text-align: center;
+  }
+</style>
+    <title>Typing Master</title>
+</head>
+<body>
+    <div><p id="par">Tajikistan cool country</p>        <textarea rows="5" cols="50" id="textarea"></textarea>
+         <div class="divtime"><span id="spanminute">00</span>.<span id="spansecond">00</span>.
+            <span id="spanmilesecond">00</span>
+        </div>
+         <button type="button" onclick="reset()">Reset</button>
+    </div>
+    <div id="div2">
+        <span id="i0"><br></span>
+        <span id="i1"><br></span>
+        <span id="i2"><br></span>
+        <span id="i3"><br></span>
+        <span id="i4"><br></span>
+        <span id="i5"><br></span>
+        <span id="i6"><br></span>
+        <span id="i7"><br></span>
+        <span id="i8"><br></span>
+        <span id="i9"><br></span>
+    </div>
+
+    <script>
+        var hint = 0;
+var cnt, cnt2 = 0;
+var ids = ["i0","i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", "i9"];
+function time(){
+    cnt = setInterval(change,10);
+    var ans = 0;
+    var ans2 = 0;
+    var ans3 = 0;
+    function change(){
+        ans ++;
+        document.getElementById("spanmilesecond").innerHTML = ans;
+        if(ans == 99){
+            ans = 0;
+            ans2 ++;
+            if(ans2 == 60){
+                ans2 = 0;
+                ans3 ++;
+                if(ans3 < 10){
+                    document.getElementById("spanminute").innerHTML = "0" + ans3;
+                }else{
+                    document.getElementById("spanminute").innerHTML = ans3;
+                }
+            }
+            if(ans2 < 10){
+                document.getElementById("spansecond").innerHTML = "0" + ans2;
+            }else{
+                document.getElementById("spansecond").innerHTML = ans2;
+            }
+        }
+    }
+}
+document.getElementById('textarea').addEventListener('input', function (evt) {
+    hint++;
+    var x = this.value;
+    var paragraph = document.getElementById("par").innerHTML;
+    var temp = '';
+    for(var i = 0; i < x.length; i ++){
+        temp += paragraph[i];
+    }
+    console.log("para: ", paragraph);
+    console.log("temp: ", temp);
+    console.log("x: ",x, x.length, hint);
+    if(x != temp){
+        console.log("NO");
+        document.getElementById("textarea").style.borderColor = "red";
+    }else{
+        console.log("YES");
+        document.getElementById("textarea").style.borderColor = "green";
+    }
+    if(x.length == 1 && hint == 1){
+        time();
+    }
+    if(x == paragraph){
+        clearInterval(cnt);
+        cnt2 ++;
+        var m = document.getElementById("spanminute").innerHTML;
+        var s = document.getElementById("spansecond").innerHTML;
+        var ms = document.getElementById("spanmilesecond").innerHTML;
+        document.getElementById(ids[cnt2-1]).innerHTML = m+"."+s+"."+ms;
+        alert("Congratulations");
+        return 0;
+    }
+});
+
+function reset(){
+    clearInterval(cnt);
+    hint = 0;
+    document.getElementById("textarea").value = '';
+    document.getElementById("textarea").style.borderColor = "gray";
+    document.getElementById("spansecond").innerHTML = "00";
+    document.getElementById("spanmilesecond").innerHTML = "00";
+    document.getElementById("spanminute").innerHTML == "00";
+}
+
+    </script>
+
+
+
+
+</body>
+</html>

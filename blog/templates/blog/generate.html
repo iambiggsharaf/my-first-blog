@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        div{
+    width: 50px;
+    height: 50px;
+    background-color: chartreuse;
+    margin: 5px;
+    display: inline-block;
+    font-size: 45px;
+    font-family: 'Oswald', sans-serif;
+  }
+    </style>
+    <script>
+        var numbers = [];
+var ids = ["i1", "i2", "i3", "i4", "i5", "i6", "i7"];
+for(var i = 0; i < 7; i ++){
+    var x = Math.floor(Math.random() * 100);
+    numbers[i] = x;
+    //console.log(numbers[i]);
+}
+var time = 0;
+function getTime(a){
+    time = 0;
+    for(var i = 0; i < a; i ++){
+        if(numbers[i] == 0){
+            time = time + (1 * 10);
+        }
+        else{
+            time = time + ((numbers[i] + 1) * 10);
+        }
+
+    }
+    return time;
+}
+//console.log(getTime(2));
+
+function generate_new(){
+    generate(0, getTime(0));
+    console.log(getTime(0));
+    generate(1, getTime(1));
+    console.log(getTime(1));
+    generate(2, getTime(2));
+    console.log(getTime(2));
+    generate(3, getTime(3));
+    console.log(getTime(3));
+    generate(4, getTime(4));
+    console.log(getTime(4));
+    generate(5, getTime(5));
+    console.log(getTime(5));
+    generate(6, getTime(6));
+    console.log(getTime(6));
+}
+function generate(a,t){
+    setTimeout(function(){
+    document.getElementById(ids[a]).innerHTML = 0;
+    var cnt = setInterval(change, 10);
+    var temp = 0;
+    function change(){
+        if(temp == numbers[a]){
+            clearInterval(cnt);
+            return 0;
+        }
+        temp ++;
+        document.getElementById(ids[a]).innerHTML = temp;
+    }
+}, t);
+}
+
+
+
+
+function bigsmall(){
+    for(var i = 0; i < 7; i ++){
+        for(var j = i; j < 7; j ++){
+            if(numbers[i] > numbers[j]){
+                var temp = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = temp;
+            }
+        }
+        document.getElementById(ids[i]).innerHTML = numbers[i];
+    }
+}
+function smallbig(){
+    for(var i = 0; i < 7; i ++){
+        for(var j = i; j < 7; j ++){
+            if(numbers[i] < numbers[j]){
+                var temp = numbers[i];
+                numbers[i] = numbers[j];
+                numbers[j] = temp;
+            }
+        }
+        document.getElementById(ids[i]).innerHTML = numbers[i];
+    }
+}
+
+
+
+
+
+
+
+    </script>
+    <title>Generate numbers</title>
+</head>
+<body>
+    <button type="button" onclick="generate_new()">Click!</button>
+    <div><span id = "i1"></span></div>
+    <div><span id = "i2"></span></div>
+    <div><span id = "i3"></span></div>
+    <div><span id = "i4"></span></div>
+    <div><span id = "i5"></span></div>
+    <div><span id = "i6"></span></div>
+    <div><span id = "i7"></span></div><br>
+    <button type="button" onclick="bigsmall()">Sort small < BIG</button>
+    <button type="button" onclick="smallbig()">Sort BIG > small</button>
+</body>
+</html>

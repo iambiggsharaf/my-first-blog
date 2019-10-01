@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Худро Имтихон Кун!</title>
+    <style>
+        body{
+            background-color:#263238;
+        }
+        #header1
+        {
+            font-family: 'K2D', sans-serif;
+            color: aliceblue;
+            font-size: 40PX;
+        }
+        #block7
+        {
+            transition: all 1s;
+        }
+        #block123
+        {
+            color: rgb(213,61,82);
+            font-family: 'K2D', sans-serif;
+        }
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            margin: 2px ;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 32px;
+        }
+        #block5{
+            color: #4CAF50;
+        }
+        h3{
+            color: rgb(213,61,82);
+            font-size: 24px;
+        }
+        #wm1{
+            text-decoration-line: underline;
+            color: powderblue;
+            padding-top:30px ;
+        }
+    </style>
+    <link rel="icon" href="out.png">
+</head>
+<body>
+    <center>
+        <h2 id = "header1">Find the Capital of Country</h2>
+        <h1 id ="block123"></h1>
+        <div id = "options">
+        <button type="button" onclick='checkAns1()' id = "block1"></button>
+        <button type="button" onclick='checkAns3()' id = "block3"></button>
+        <br>
+        <br>
+        <button type="button" onclick='checkAns2()' id = "block2"></button>
+        <button type="button" onclick='checkAns4()' id = "block4"></button>
+        <br>
+        </div>
+        <h1 id = "block5">Your score is <ins><span id="block6" style="color: aliceblue;"></span></ins></h1>
+        <div  id = "block7">
+            <img src="pics/insta.gif" width="84px" height="84px" id = "timer">
+        </div>
+
+
+        <script>
+            var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","The Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo, Republic of the","Congo, Democratic Republic of the","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","East Timor (Timor-Leste)","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","The Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea, North","Korea, South","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia, Federated States of","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar (Burma)","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City (Holy See)","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
+
+
+var cities = ["Kabul","Tirana","Algiers","Andorra la Vella","Luanda","Saint John's","Buenos Aires","Yerevan","Canberra","Vienna","Baku","Nassau","Manama","Dhaka","Bridgetown","Minsk","Brussels","Belmopan","Porto-Novo","Thimphu","La Paz (administrative); Sucre (judicial)","Sarajevo","Gaborone","Brasilia","Bandar Seri Begawan","Sofia","Ouagadougou","Bujumbura","Phnom Penh","Yaounde","Ottawa","Praia","Bangui","N'Djamena","Santiago","Beijing","Bogota","Moroni","Brazzaville","Kinshasa","San Jose","Yamoussoukro (official); Abidjan (de facto)","Zagreb","Havana","Nicosia","Prague","Copenhagen","Djibouti","Roseau","Santo Domingo","Dili","Quito","Cairo","San Salvador","Malabo","Asmara","Tallinn","Addis Ababa","Suva","Helsinki","Paris","Libreville","Banjul","Tbilisi","Berlin","Accra","Athens","Saint George's","Guatemala City","Conakry","Bissau","Georgetown","Port-au-Prince","Tegucigalpa","Budapest","Reykjavik","New Delhi","Jakarta","Tehran","Baghdad","Dublin","Jerusalem*","Rome","Kingston","Tokyo","Amman","Astana","Nairobi","Tarawa Atoll","Pyongyang","Seoul","Pristina","Kuwait City","Bishkek","Vientiane","Riga","Beirut","Maseru","Monrovia","Tripoli","Vaduz","Vilnius","Luxembourg","Skopje","Antananarivo","Lilongwe","Kuala Lumpur","Male","Bamako","Valletta","Majuro","Nouakchott","Port Louis","Mexico City","Palikir","Chisinau","Monaco","Ulaanbaatar","Podgorica","Rabat","Maputo","Rangoon (Yangon); Naypyidaw or Nay Pyi Taw (administrative)","Windhoek","no official capital; government offices in Yaren District","Kathmandu","Amsterdam; The Hague (seat of government)","Wellington","Managua","Niamey","Abuja","Oslo","Muscat","Islamabad","Melekeok","Panama City","Port Moresby","Asuncion","Lima","Manila","Warsaw","Lisbon","Doha","Bucharest","Moscow","Kigali","Basseterre","Castries","Kingstown","Apia","San Marino","Sao Tome","Riyadh","Dakar","Belgrade","Victoria","Freetown","Singapore","Bratislava","Ljubljana","Honiara","Mogadishu","Pretoria (administrative); Cape Town (legislative); Bloemfontein (judiciary)","Juba","Madrid","Colombo; Sri Jayewardenepura Kotte (legislative)","Khartoum","Paramaribo","Mbabane","Stockholm","Bern","Damascus","Taipei","Dushanbe","Dar es Salaam; Dodoma (legislative)","Bangkok","Lome","Nuku'alofa","Port-of-Spain","Tunis","Ankara","Ashgabat","Vaiaku village, Funafuti province","Kampala","Kyiv","Abu Dhabi","London","Washington, D.C.","Montevideo","Tashkent","Port-Vila","Vatican City","Caracas","Hanoi","Sanaa","Lusaka","Harare"];
+var time;
+var optionsCheck = [0, 0, 0, 0];
+function getQuiz ()
+{
+    time = 10;
+    var getCountry = Math.floor(Math.random() * 196);
+    var options = ["block1", "block2", "block3", "block4"];
+    document.getElementById("block123").innerHTML = countries[getCountry];
+    var check = Math.floor(Math.random() * 4);
+    optionsCheck = [0, 0, 0, 0];
+    optionsCheck[check] = 2;
+    document.getElementById(options[check]).innerHTML = cities[getCountry];
+    var current ;
+    function generateOption()
+    {
+        current = Math.floor(Math.random() * 196);
+        if(current == getCountry)
+        {
+            generateOption();
+        }
+        else
+        {
+            return current;
+        }
+    }
+    function seeOrder ()
+    {
+        for(var i = 0; i < 4; i ++)
+        {
+            if(optionsCheck[i] == 0)
+            {
+                generateOption();
+                document.getElementById(options[i]).innerHTML = cities[current];
+            // console.log(i, options[i], optionsCheck[i],cities[current], current,optionsCheck[check]);
+            }
+        }
+    }
+    seeOrder();
+
+}
+ getQuiz();
+
+
+
+
+
+
+ var cnt = 0;
+ function checkAns1()
+ {
+     if(optionsCheck[0] == 2)
+     {
+         cnt++;
+         document.getElementById("block6").innerHTML = cnt;
+         getQuiz();
+     }
+     else
+     {
+         alert("You Lose! Your score is " + cnt);
+         getQuiz();
+         cnt = 0;
+         document.getElementById("block6").innerHTML = cnt;
+     }
+ }
+ function checkAns2()
+ {
+    if(optionsCheck[1] == 2)
+     {
+        cnt++;
+        document.getElementById("block6").innerHTML = cnt;
+        getQuiz();
+     }
+     else
+     {
+         alert("You Lose! Your score is " + cnt);
+         getQuiz();
+         cnt = 0;
+         document.getElementById("block6").innerHTML = cnt;
+        }
+ }
+ function checkAns3()
+ {
+    if(optionsCheck[2] == 2)
+     {
+        cnt++;
+        document.getElementById("block6").innerHTML = cnt;
+        getQuiz();
+     }
+     else
+     {
+         alert("You Lose! Your score is " + cnt);
+         getQuiz();
+         cnt = 0;
+         document.getElementById("block6").innerHTML = cnt;
+     }
+ }
+ function checkAns4()
+ {
+    if(optionsCheck[3] == 2)
+     {
+        cnt++;
+        document.getElementById("block6").innerHTML = cnt;
+        getQuiz();
+     }
+     else
+     {
+         alert("You Lose! Your score is " + cnt);
+         getQuiz();
+         cnt = 0;
+         document.getElementById("block6").innerHTML = cnt;
+     }
+ }
+
+        </script>
+
+
+        <div id="wm1">
+            <span style="height: 40px;">Burito.inc & Littbird Group, 2018</span>
+            <br>
+            <span>All rights reserved.</span>
+        </div>
+        <img src="out.png" width="42px" height="42px" >
+    </center>
+
+</body>
+</html>

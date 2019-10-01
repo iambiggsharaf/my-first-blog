@@ -1,0 +1,215 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+        <meta charset="utf-8">
+        <style>
+            body{
+    background-image: radial-gradient(circle, #2e2e2e, #2b2b2b, #272727, #242424, #212121);
+}
+h1, p{
+    color: #3F729B;
+    font-family: 'Coiny', cursive;
+}
+span{
+    color: #ff4444;
+    font-family: 'Coiny', cursive;
+}
+input{
+    widows: 140px;
+    height: 35px;
+}
+        </style>
+    </head>
+    <body>
+        <h1 align="center">Littbird Round 2</h1>
+        <p align="center">Please fill up the blanks below</p>
+
+        <form action="admited.html" method="get" autocomplete="on" align="center">
+           <input type="text" placeholder="First Name:" required name="UserFirstName" id="UserFirstName"><br>
+           <span id = "namespan"></span>
+           <input type="text" placeholder="Last Name:" required name="UserLastName" id="UserLastName"><br>
+           <span id = "namespan2"></span>
+           <input type="tel" placeholder="Phone Number:" required name="UserTel" id="UserTel"><br>
+           <span id = "namespan3"></span>
+           <!--<input type="text" placeholder="City" required name="UserCityExam" id="UserCityExam"><br>-->
+           <input type="email" placeholder="Email" required name="UserEmail" id="UserEmail"><br>
+           <span id = "namespan4"></span>
+           <!--<input type="date" required name="UserDateOfBirth" id="UserDateOfBirth"><br>-->
+      <!--Male <input type="radio" required name="UserGender" value="0" id="UserGenderMale"><br>-->
+   <!--Female <input type="radio" name="UserGender" value="1" id="UserGenderFemale"><br>-->
+           <!--<input type="range" min="0" max="100" step="10" name="UserCost" id="UserCost"><br>-->
+           <!--<select required name="UserLangOfCode" id="UserLangOfCode">-->
+               <!--<option disabled selected>Choose one</option>
+               <option>C++</option>"">
+               <option>Phyton</option>
+               <option>Java</option>
+               <option>C#</option>
+               <option>JavaScript</option>
+               <option>Delphi</option>
+           </select><br>-->
+           <!--<input type="file" accept="image/jpeg, image/png" required><br>-->
+           <input type="password" placeholder="Password" required name="UserPass" id="UserPass"><br>
+           <span id = "namespan5"></span>
+           <input type="password" placeholder="Confirm Password" required name="UserConPass" id="UserConPass"><br>
+           <span id = "namespan6"></span>
+           <!--<input type="url" placeholder="Link to Instagram" name="UserIns"><br>-->
+           <input type="submit" id="submit_button">
+        </form>
+        <script>
+
+
+document.getElementById('UserFirstName').addEventListener('input', function (evt) {
+        var int = this.value;
+        CheckUserName(int);
+    });
+    document.getElementById('UserLastName').addEventListener('input', function (evt) {
+        var int = this.value;
+        CheckUserSurname(int);
+    });
+    document.getElementById('UserTel').addEventListener('input', function (evt) {
+        var int = this.value;
+        CheckUserTel(int);
+    });
+    document.getElementById('UserEmail').addEventListener('input', function (evt) {
+        var int = this.value;
+        console.log("mail", int);
+        CheckUserEmail(int);
+    });
+    document.getElementById('UserPass').addEventListener('input', function (evt) {
+        var int = this.value;
+        CheckUserPassword(int);
+    });
+    document.getElementById('UserConPass').addEventListener('input', function (evt) {
+        conpassword = this.value;
+        if(document.getElementById('UserPass').value.length == conpassword.length){
+            CheckInTime();
+        }
+
+    });
+
+
+    var cnt = false;
+    var name = document.getElementById("UserFirstName").value;
+    var surname = document.getElementById("UserLastName").value;
+    var tel = document.getElementById("UserTel").value;
+    var password = document.getElementById("UserPass").value;
+    var conpassword = document.getElementById("UserConPass").value;
+    var email = document.getElementById("UserEmail").value;
+
+
+    function CheckUserName(a){
+        if(a.length < 3){
+            cnt = true;
+            document.getElementById("namespan").innerHTML = "Sorry, At least 3 charactes!<br>";
+        }
+        else{
+            document.getElementById("namespan").innerHTML = "";
+        }
+        for(var i = 0; i < a.length; i ++){
+            if(a.length > 0){
+                if(a[i].charCodeAt(0) > 47 && a[i].charCodeAt(0) < 58){
+                    cnt = true;
+                    document.getElementById("namespan").innerHTML = "Sorry, No numbers!<br>";
+                }
+                else if(a > 2){
+                    document.getElementById("namespan").innerHTML = "";
+                }
+            }
+        }
+    }
+    function CheckUserSurname(a){
+        if(a.length < 3){
+            cnt = true;
+            document.getElementById("namespan2").innerHTML = "Sorry, At least 3 charactes!<br>";
+        }
+        else{
+            document.getElementById("namespan2").innerHTML = "";
+        }
+        for(var i = 0; i < a.length; i ++){
+            if(a.length > 0){
+                if(a[i].charCodeAt(0) > 47 && a[i].charCodeAt(0) < 58){
+                    cnt = true;
+                    document.getElementById("namespan2").innerHTML = "Sorry, No numbers!<br>";
+                }
+                else if(a > 2){
+                    document.getElementById("namespan2").innerHTML = "";
+                }
+            }
+        }
+    }
+    function CheckUserTel(tel)
+    {
+        if(tel.length < 9){
+            cnt = true;
+            document.getElementById("namespan3").innerHTML = "Incorrect number!<br>";
+        }else{
+            document.getElementById("namespan3").innerHTML = "";
+        }
+    }
+    function CheckUserEmail(email){
+        if(email.length == 0){
+            cnt = true;
+            document.getElementById("namespan4").innerHTML = "Incorrect Email!<br>";
+        }else{
+            document.getElementById("namespan4").innerHTML = "";
+        }
+        for(var i = 0; i < email.length; i ++){
+            var ans = 0;
+            var q;
+            if(email[i] == '@'){
+                ans ++;
+                q = i;
+            }
+            if(ans != 1){
+                cnt = true;
+                document.getElementById("namespan4").innerHTML = "Incorrect Email!<br>";
+            }
+            else{
+                document.getElementById("namespan4").innerHTML = "";
+            }
+            var ans1 = 0;
+            for(var j = q; j <= email.length; j++){
+                if(email[j] == '.'){
+                    ans1 ++;
+                }
+            }
+            if(ans1 != 1){
+                cnt = true;
+                document.getElementById("namespan4").innerHTML = "Incorrect Email!<br>";
+            }
+            else{
+                document.getElementById("namespan4").innerHTML = "";
+            }
+        }
+    }
+    function CheckUserPassword(a){
+        if(a.length == 0){
+            cnt = true;
+            document.getElementById("namespan5").innerHTML = "Incorrect password!<br>";
+        }
+        else{
+            document.getElementById("namespan5").innerHTML = "";
+        }
+    }
+    function CheckUserConPassword(conpassword){
+        if(conpassword != password){
+            cnt = true;
+            document.getElementById("namespan6").innerHTML = "Passwords are not matching<br>";
+        }
+        else{
+            document.getElementById("namespan6").innerHTML = "";
+        }
+    }
+    function CheckInTime(){
+        setTimeout(alert('Hi'),1000);
+    }
+
+
+
+        </script>
+        <?php
+            echo "Hello World";
+        ?>
+    </body>
+</html>

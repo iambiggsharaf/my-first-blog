@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        .bytes
+{
+    display: inline-block;
+    width: 160px;
+    height: 200px;
+    background-color: #3F729B;
+    padding: auto;
+    font-size: 180px;
+    color: black;
+}
+.small
+{
+    width: 200px;
+    height: 130px;
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color:#3F729B;
+    border: 10px solid black;
+    font-size: 120px;
+    text-align: center;
+    color: cornsilk;
+    font-family: 'Oswald', sans-serif;
+}
+.bytesvalue
+{
+    display: inline-block;
+    width: 160px;
+    height: 100px;
+    background-color: #2E2E2E;
+    padding: auto;
+    font-size: 100px;
+    color: aliceblue;
+    text-align: center;
+}
+
+    </style>
+    <script>
+        var result = 0;
+function byte128() {
+    if (document.getElementById("byte128").innerHTML == '0') {
+        document.getElementById("byte128").innerHTML = "1";
+        result += 128;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte128").innerHTML = "0";
+        result -= 128;
+        document.getElementById("result").innerHTML = result;
+    }
+}
+function byte64() {
+    if (document.getElementById("byte64").innerHTML == '0') {
+        document.getElementById("byte64").innerHTML = "1";
+        result += 64;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte64").innerHTML = "0";
+        result -= 64;
+        document.getElementById("result").innerHTML = result;
+    }
+} function byte32() {
+    if (document.getElementById("byte32").innerHTML == '0') {
+        document.getElementById("byte32").innerHTML = "1";
+        result += 32;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte32").innerHTML = "0";
+        result -= 32;
+        document.getElementById("result").innerHTML = result;
+    }
+} function byte16() {
+    if (document.getElementById("byte16").innerHTML == '0') {
+        document.getElementById("byte16").innerHTML = "1";
+        result += 16;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte16").innerHTML = "0";
+        result -= 16;
+        document.getElementById("result").innerHTML = result;
+    }
+} function byte8() {
+    if (document.getElementById("byte8").innerHTML == '0') {
+        document.getElementById("byte8").innerHTML = "1";
+        result += 8;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte8").innerHTML = "0";
+        result -= 8;
+        document.getElementById("result").innerHTML = result;
+    }
+} function byte4() {
+    if (document.getElementById("byte4").innerHTML == '0') {
+        document.getElementById("byte4").innerHTML = "1";
+        result += 4;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte4").innerHTML = "0";
+        result -= 4;
+        document.getElementById("result").innerHTML = result;
+    }
+} function byte2() {
+    if (document.getElementById("byte2").innerHTML == '0') {
+        document.getElementById("byte2").innerHTML = "1";
+        result += 2;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte2").innerHTML = "0";
+        result -= 2;
+        document.getElementById("result").innerHTML = result;
+    }
+} function byte1() {
+    if (document.getElementById("byte1").innerHTML == '0') {
+        document.getElementById("byte1").innerHTML = "1";
+        result += 1;
+        document.getElementById("result").innerHTML = result;
+    }
+    else {
+        document.getElementById("byte1").innerHTML = "0";
+        result -= 1;
+        document.getElementById("result").innerHTML = result;
+    }
+}
+    </script>
+    <title>Binary Game</title>
+</head>
+
+<body>
+    <div class="big">
+        <button type="button" class="bytes" id="byte128" onclick="byte128()">0</button>
+        <button type="button" class="bytes" id="byte64" onclick="byte64()">0</button>
+        <button type="button" class="bytes" id="byte32" onclick="byte32()">0</button>
+        <button type="button" class="bytes" id="byte16" onclick="byte16()">0</button>
+        <button type="button" class="bytes" id="byte8" onclick="byte8()">0</button>
+        <button type="button" class="bytes" id="byte4" onclick="byte4()">0</button>
+        <button type="button" class="bytes" id="byte2" onclick="byte2()">0</button>
+        <button type="button" class="bytes" id="byte1" onclick="byte1()">0</button>
+    </div>
+    <div>
+        <div class="bytesvalue">128</div>
+        <div class="bytesvalue">64</div>
+        <div class="bytesvalue">32</div>
+        <div class="bytesvalue">16</div>
+        <div class="bytesvalue">8</div>
+        <div class="bytesvalue">4</div>
+        <div class="bytesvalue">2</div>
+        <div class="bytesvalue">1</div>
+    </div>
+    <div class="small" id="result"></div>
+</body>
+
+</html>
